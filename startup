@@ -1,0 +1,9 @@
+#!/bin/bash -e
+
+if [ ! -d /var/log/uwsgi ]; then
+    mkdir /var/log/uwsgi
+fi
+
+sysctl -p
+
+exec supervisord
