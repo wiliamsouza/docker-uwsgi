@@ -33,7 +33,8 @@ Volumes:
 
 * `/var/log/uwsgi`: Access log from the container using it.
 * `/etc/uwsgi`: Change server configurations using it.
-* `/srv`: App code goes here.
+* `/srv/project`: App code goes here.
+* `/srv/virtualenv`: App virtualenv goes here.
 
 You pass with `-v` docker option. Don't forget to use absolute path here.
 
@@ -43,7 +44,7 @@ Environment variable:
 
 You pass with `-e` docker option.
 
-This source is shiped with a minimal Django project in `volumes/project` to use it
+This source is shipped with a minimal Django project in `volumes/project` to use it
 for test you need to create and `virtualenv` in `volumes/virtualenv` and run `pip install requirements.txt`
 in order to install its dependencies.
 
@@ -52,7 +53,7 @@ Shell access:
 ```
 $ docker.io run -p 8000:8000 -i \
 -v `pwd`/volumes/virtualenv:/srv/virtualenv \
--v `pwd`/volumes/project:/srv/project \
+-v `pwd`/volumes/project/myproject:/srv/project \
 -v `pwd`/volumes/log:/var/log/uwsgi \
 -v `pwd`/volumes/etc:/etc/uwsgi \
 -e DJANGO_SETTINGS_MODULE=myproject.settings \
@@ -67,7 +68,7 @@ Usage:
 ```
 $ docker.io run --name uwsgi -p 8000:8000 -d \
 -v `pwd`/volumes/virtualenv:/srv/virtualenv \
--v `pwd`/volumes/project:/srv/project \
+-v `pwd`/volumes/project/myproject:/srv/project \
 -v `pwd`/volumes/log:/var/log/uwsgi \
 -v `pwd`/volumes/etc:/etc/uwsgi \
 -e DJANGO_SETTINGS_MODULE=myproject.settings \
