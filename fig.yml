@@ -1,0 +1,11 @@
+uwsgi:
+  image: wiliamsouza/uwsgi
+  ports:
+    - "8000:8000"
+  volumes:
+    - volumes/virtualenv:/srv/virtualenv \
+    - volumes/project/myproject:/srv/project \
+    - volumes/log:/var/log/uwsgi \
+    - volumes/etc:/etc/uwsgi \
+  environment:
+    - DJANGO_SETTINGS_MODULE: myproject.settings
